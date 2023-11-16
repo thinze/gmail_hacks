@@ -11,16 +11,17 @@
 (function() {
     'use strict';
 
+    // Your code here...
     var css = [];
 
     // cfg CSS
     css.push('.G3.G2 > div > div { display: flex; flex-direction: column; } ');
     css.push('.G3.G2 > div > div .adn.ads { order: 2; } ');
     css.push('.G3.G2 > div > div .gA.gt { order: 1; } ');
+    css.push('.nH > .bGI > .UI .vip { color: #005fff; } ');
+    css.push('.nH > .bGI > .UI .important { color: #ff1d7b; } ');
 
     css = css.join('');
-
-    // ---  helper functions  ---
 
     /**
      * insert custom CSS
@@ -60,11 +61,74 @@
     }
 
 
-    // ---  main  ---
+    // ---  scripts  ---
 
-    updateCss(css);
+    function markImportantSenders(elem) {
+        var importants = [
+            ['alexander kürsten', ' vip'],
+            ['sylvia saffroy', ' important']
+        ];
+        importants.forEach(function(person) {
+            if (elem.innerText.toLowerCase().indexOf(person[0]) > -1) {   // person found
+                elem.className = elem.className.replace(person[1], '') + person[1];
+            }
+        });
+    }
 
+    function mailsListEnhancer(selector) {
+        const mailsList = document.querySelector(selector);
+
+        if (mailsList) {
+
+            // Konfiguration für den MutationObserver (Welche Arten von Mutationen sollen beobachtet werden)
+            const observerConfig = {
+                // attributes: true, // Überwache Attributänderungen im Ziel-Element
+                childList: true, // Überwache Änderungen in der Liste der Kinder des Ziel-Elements
+                subtree: true, // Überwache Änderungen im gesamten Unterbaum des Ziel-Elements
+                // characterData: true // Überwache Änderungen im Textinhalt des Ziel-Elements
+            };
+
+            // Callback-Funktion, die aufgerufen wird, wenn eine Mutation erkannt wird
+            const mailsListMutationCallback = function (mutationsList, observer) {
+                mutationsList.forEach(mutation => {
+                    // console.log('mutation detected:', mutation);
+                    var senders = document.querySelectorAll(selector + ' table tr td:nth-child(5)');
+                    if (senders.length) {
+                        senders.forEach(markImportantSenders);
+                    }
+                });
+            };
+
+            // Erstellen eines MutationObservers mit der Callback-Funktion und der Konfiguration
+            const mailsListObserver = new MutationObserver(mailsListMutationCallback);
+
+            // Starte die Überwachung des Ziel-Elements mit der definierten Konfiguration
+            mailsListObserver.observe(mailsList, observerConfig);
+
+            // Um den Observer zu stoppen, verwende:
+            // observer.disconnect();
+        }
+
+    }
+
+    function waitFor_mailsList(selector) {
+        const mailsList = document.querySelector(selector);
+
+        if (mailsList) {
+            // console.log('mailsList wurde gefunden.');
+            mailsListEnhancer(selector);
+
+        } else {
+            setTimeout(function() { waitFor_mailsList(selector); } , 100);
+            // console.log("wait for DOM element '" + selector + "' ...");
+        }
+    }
+
+
+    updateCss(css, 'gmail-hacks');
+    waitFor_mailsList(".AO div[id=':1']");
 
     console.log('GMail Hacks started ...');
+
 
 })();
