@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GMail Hacks
 // @namespace    http://tampermonkey.net/
-// @version      0.1
+// @version      0.2
 // @updateURL    https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @downloadURL  https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @description  try to take over the world!
