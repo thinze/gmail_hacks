@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GMail Hacks
 // @namespace    http://tampermonkey.net/
-// @version      0.2
+// @version      0.21
 // @updateURL    https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @downloadURL  https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @description  try to take over the world!
@@ -23,6 +23,7 @@
   css.push('.nH > .bGI > .UI .vip { color: #005fff; } ');
   css.push('.nH > .bGI > .UI .important { color: #ff1d7b; } ');
   css.push('.nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ');
+  css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; }');
 
   css = css.join('');
 
