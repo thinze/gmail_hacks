@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GMail Hacks
 // @namespace    http://tampermonkey.net/
-// @version      0.21
+// @version      0.22
 // @updateURL    https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @downloadURL  https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @description  try to take over the world!
@@ -23,7 +23,9 @@
   css.push('.nH > .bGI > .UI .vip { color: #005fff; } ');
   css.push('.nH > .bGI > .UI .important { color: #ff1d7b; } ');
   css.push('.nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ');
-  css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; }');
+  css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } ');
+  // disable toolbar on hover in mail listing to see the date while hover
+  css.push('.zA.yO.x7.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } .zA.yO.x7.aqw .xW.xY { display: inline-block !important; } ');
 
   css = css.join('');
 
