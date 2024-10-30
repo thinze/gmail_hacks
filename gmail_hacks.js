@@ -25,7 +25,7 @@
   css.push('.nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ');
   css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } ');
   // disable toolbar on hover in mail listing to see the date while hover
-  css.push('.zA.yO.x7.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } .zA.yO.x7.aqw .xW.xY { display: inline-block !important; } ');
+  css.push('tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } ');
 
   css = css.join('');
 
