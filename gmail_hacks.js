@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GMail Hacks
 // @namespace    http://tampermonkey.net/
-// @version      0.22
+// @version      0.23
 // @updateURL    https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @downloadURL  https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @description  try to take over the world!
@@ -26,6 +26,8 @@
   css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } ');
   // disable toolbar on hover in mail listing to see the date while hover
   css.push('tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } ');
+  // add litte yellow backgtound to hovered mail in maillist
+  css.push('tr.aqw td { background: #feffde;} ');
 
   css = css.join('');
 
