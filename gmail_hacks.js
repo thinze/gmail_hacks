@@ -28,6 +28,7 @@
   css.push('tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } ');
   // add litte yellow backgtound to hovered mail in maillist
   css.push('tr.aqw td { background: #feffde;} ');
+  css.push(".aZ>.J-Z { border-radius: 0 !important; background-color: #eaeaea !important; bottom: 10px; } ");
 
   css = css.join('');
 
