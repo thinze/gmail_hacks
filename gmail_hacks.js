@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         GMail Hacks
 // @namespace    http://tampermonkey.net/
-// @version      0.23
+// @version      0.24
 // @updateURL    https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @downloadURL  https://raw.githubusercontent.com/thinze/gmail_hacks/refs/heads/master/gmail_hacks.js
 // @description  try to take over the world!
@@ -10,40 +10,49 @@
 // @grant        none
 // ==/UserScript==
 
-(function() {
-  'use strict';
+(function () {
+  "use strict";
 
   // Your code here...
   var css = [];
 
   // cfg CSS
-  css.push('.G3.G2 > div > div { display: flex; flex-direction: column; } ');
-  css.push('.G3.G2 > div > div .adn.ads { order: 2; } ');
-  css.push('.G3.G2 > div > div .gA.gt { order: 1; } ');
-  css.push('.nH > .bGI > .UI .vip { color: #005fff; } ');
-  css.push('.nH > .bGI > .UI .important { color: #ff1d7b; } ');
-  css.push('.nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ');
-  css.push('.nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } ');
+  css.push(".G3.G2 > div > div { display: flex; flex-direction: column; } ");
+  css.push(
+    ".G3.G2 > div > div #avWBGd-1 { display: flex; flex-direction: column; } "
+  );
+  css.push(".G3.G2 > div > div .adn.ads { order: 2; } ");
+  css.push(".G3.G2 > div > div .gA.gt { order: 1; } ");
+  css.push(".nH > .bGI > .UI .vip { color: #005fff; } ");
+  css.push(".nH > .bGI > .UI .important { color: #ff1d7b; } ");
+  css.push(".nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ");
+  css.push(
+    ".nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } "
+  );
   // disable toolbar on hover in mail listing to see the date while hover
-  css.push('tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } ');
+  css.push(
+    "tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } "
+  );
   // add litte yellow backgtound to hovered mail in maillist
-  css.push('tr.aqw td { background: #feffde;} ');
-  css.push(".aZ>.J-Z { border-radius: 0 !important; background-color: #eaeaea !important; bottom: 10px; } ");
+  css.push("tr.aqw td { background: #feffde;} ");
+  css.push(
+    ".aZ>.J-Z { border-radius: 0 !important; background-color: #eaeaea !important; bottom: 10px; } "
+  );
 
-  css = css.join('');
+  css = css.join("");
 
   /**
    * insert custom CSS
    *
    */
   function insertCss(css, css_id) {
-    var style = document.createElement('STYLE');
+    var style = document.createElement("STYLE");
     if (css_id) {
       style.id = css_id;
     }
     var node = document.createTextNode(css);
     style.appendChild(node);
-    document.querySelector('head').appendChild(style);
+    document.querySelector("head").appendChild(style);
   }
 
   /**
@@ -53,7 +62,7 @@
    * @param css
    */
   function updateCss(css, css_id) {
-    var styles = document.querySelector('#' + css_id);
+    var styles = document.querySelector("#" + css_id);
     if (styles) {
       styles.parentNode.removeChild(styles);
     }
@@ -66,22 +75,22 @@
    * @param elem      DOM node
    * @param styles    key-value array {width: 'auto', height: 'auto', ... }
    */
-  function setStylesOnElement(elem, styles){
+  function setStylesOnElement(elem, styles) {
     Object.assign(elem.style, styles);
   }
-
 
   // ---  scripts  ---
 
   function markImportantSenders(elem) {
     var importants = [
-      ['alexander kürsten', ' vip'],
-      ['sylvia saffroy', ' important'],
-      ['server monitor', ' servermonitor']
+      ["alexander kürsten", " vip"],
+      ["sylvia saffroy", " important"],
+      ["server monitor", " servermonitor"],
     ];
-    importants.forEach(function(person) {
-      if (elem.innerText.toLowerCase().indexOf(person[0]) > -1) {   // person found
-        elem.className = elem.className.replace(person[1], '') + person[1];
+    importants.forEach(function (person) {
+      if (elem.innerText.toLowerCase().indexOf(person[0]) > -1) {
+        // person found
+        elem.className = elem.className.replace(person[1], "") + person[1];
       }
     });
   }
@@ -90,7 +99,6 @@
     const mailsList = document.querySelector(selector);
 
     if (mailsList) {
-
       // Konfiguration für den MutationObserver (Welche Arten von Mutationen sollen beobachtet werden)
       const observerConfig = {
         // attributes: true, // Überwache Attributänderungen im Ziel-Element
@@ -101,13 +109,15 @@
 
       // Callback-Funktion, die aufgerufen wird, wenn eine Mutation erkannt wird
       const mailsListMutationCallback = function (mutationsList, observer) {
-        mutationsList.forEach(mutation => {
+        mutationsList.forEach((mutation) => {
           // console.log('mutation detected:', mutation);
-          var senders = document.querySelectorAll(selector + ' table tr td:nth-child(5)');
-        if (senders.length) {
-          senders.forEach(markImportantSenders);
-        }
-      });
+          var senders = document.querySelectorAll(
+            selector + " table tr td:nth-child(5)"
+          );
+          if (senders.length) {
+            senders.forEach(markImportantSenders);
+          }
+        });
       };
 
       // Erstellen eines MutationObservers mit der Callback-Funktion und der Konfiguration
@@ -119,7 +129,6 @@
       // Um den Observer zu stoppen, verwende:
       // observer.disconnect();
     }
-
   }
 
   function waitFor_mailsList(selector) {
@@ -128,18 +137,16 @@
     if (mailsList) {
       // console.log('mailsList wurde gefunden.');
       mailsListEnhancer(selector);
-
     } else {
-      setTimeout(function() { waitFor_mailsList(selector); } , 100);
+      setTimeout(function () {
+        waitFor_mailsList(selector);
+      }, 100);
       // console.log("wait for DOM element '" + selector + "' ...");
     }
   }
 
-
-  updateCss(css, 'gmail-hacks');
+  updateCss(css, "gmail-hacks");
   waitFor_mailsList(".AO div[id=':1']");
 
-  console.log('GMail Hacks started ...');
-
-
+  console.log("GMail Hacks started ...");
 })();
