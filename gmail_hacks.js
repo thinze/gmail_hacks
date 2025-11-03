@@ -19,7 +19,7 @@
   // cfg CSS
   css.push(".G3.G2 > div > div { display: flex; flex-direction: column; } ");
   css.push(
-    ".G3.G2 > div > div #avWBGd-1 { display: flex; flex-direction: column; } "
+    ".G3.G2 > div > div > div { display: flex; flex-direction: column; } "
   );
   css.push(".G3.G2 > div > div .adn.ads { order: 2; } ");
   css.push(".G3.G2 > div > div .gA.gt { order: 1; } ");
