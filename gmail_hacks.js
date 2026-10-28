@@ -18,26 +18,18 @@
 
   // cfg CSS
   css.push(".G3.G2 > div > div { display: flex; flex-direction: column; } ");
-  css.push(
-    ".G3.G2 > div > div > div { display: flex; flex-direction: column; } "
-  );
+  css.push(".G3.G2 > div > div > div { display: flex; flex-direction: column; } ");
   css.push(".G3.G2 > div > div .adn.ads { order: 2; } ");
   css.push(".G3.G2 > div > div .gA.gt { order: 1; } ");
   css.push(".nH > .bGI > .UI .vip { color: #005fff; } ");
   css.push(".nH > .bGI > .UI .important { color: #ff1d7b; } ");
   css.push(".nH > .bGI > .UI .servermonitor { background-color: #ff991d; } ");
-  css.push(
-    ".nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } "
-  );
+  css.push(".nU.n1 + div { color: #363636; background: #b6deff; border-radius: 50%; padding: 0 0.5em; } ");
   // disable toolbar on hover in mail listing to see the date while hover
-  css.push(
-    "tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } "
-  );
+  css.push("tr.aqw td.bq4.xY ul[role=toolbar] { display: none !important; } tr.aqw .xW.xY { display: inline-block !important; } ");
   // add litte yellow backgtound to hovered mail in maillist
   css.push("tr.aqw td { background: #feffde;} ");
-  css.push(
-    ".aZ>.J-Z { border-radius: 0 !important; background-color: #eaeaea !important; bottom: 10px; } "
-  );
+  css.push(".aZ>.J-Z { border-radius: 0 !important; background-color: #eaeaea !important; bottom: 10px; } ");
 
   css = css.join("");
 
@@ -111,9 +103,7 @@
       const mailsListMutationCallback = function (mutationsList, observer) {
         mutationsList.forEach((mutation) => {
           // console.log('mutation detected:', mutation);
-          var senders = document.querySelectorAll(
-            selector + " table tr td:nth-child(5)"
-          );
+          var senders = document.querySelectorAll(selector + " table tr td:nth-child(5)");
           if (senders.length) {
             senders.forEach(markImportantSenders);
           }
