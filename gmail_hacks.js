@@ -78,6 +78,7 @@
       ["alexander kürsten", " vip"],
       ["sylvia saffroy", " important"],
       ["server monitor", " servermonitor"],
+      ["[wordfence]", " servermonitor"],
     ];
     importants.forEach(function (person) {
       if (elem.innerText.toLowerCase().indexOf(person[0]) > -1) {
@@ -104,8 +105,12 @@
         mutationsList.forEach((mutation) => {
           // console.log('mutation detected:', mutation);
           var senders = document.querySelectorAll(selector + " table tr td:nth-child(5)");
+          var subjects = document.querySelectorAll(selector + " table tr td:nth-child(6)");
           if (senders.length) {
             senders.forEach(markImportantSenders);
+          }
+          if (subjects.length) {
+            subjects.forEach(markImportantSenders);
           }
         });
       };
